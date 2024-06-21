@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# Place these scripts and the MCRCON executable in the ~/bin directory and specify the full path below.
+binpath="/home/[YourUserDir]/bin"
+# Specify the absolute path of the Whitelist.json file. (On a server such as purpur that handles Wihtelist)
+whitelistfile='/home/[YourUserDir]/minecraft/purpur1.20.6/whitelist.json'
+#
+echo "WhiteLister:" $1
+oneline=$(echo $1 | grep UUID)
+if [ -n "$oneline" ]; then
+echo -e "\e[31m ========== Catch UUID! SO Check Lists ==========\e[m"
+#  echo "!!Found UUID LINE=" $oneline
+# Your server's standard output (log) may be different. In the following case, in purpur, the MCID is in the 6th place and the UUID is in the 8th place, separated by spaces, so you can get the value of the variable from there.
+  MCID=`echo $oneline | cut -d " " -f 6`
+  UUID=`echo $oneline | cut -d " " -f 8`
+  echo "!!catch MCID:"$MCID"    UUID:"$UUID
+  echo -n "!!Isbannd?: "
+  bannedresult=$($binpath/isbanned $UUID $MCID)
+  echo $bannedresult
+  if [ $bannedresult = "false" ]; then
+    echo -n "!!Is duped?: "
+    dupedresult=$($binpath/isduped $UUID)
+    echo $dupedresult
+    if [ $dupedresult = "false" ]; then
+      if [ -f $whitelistfile ]; then
+#This is a bit aggressive, but it will be added to your existing Whitelist.json file. Therefore, one or more users (e.g. with op privileges) must be registered in the Whitelist.json file.
+        echo -e "\e[31m ========== All CLEAR ==========\e[m"
+        # echo cut 2 lines
+        sed -i '$d' $whitelistfile
+        sed -i '$d' $whitelistfile
+        # echo add lines
+        echo "  }," >> $whitelistfile
+        echo '  {'>> $whitelistfile
+        echo '    "uuid": "'$UUID'",'>> $whitelistfile
+        echo '    "name": "'$MCID'"'>> $whitelistfile
+        echo '  }'>> $whitelistfile
+        echo ']'>> $whitelistfile
+        sleep 3
+        echo "whitelist reload" | $binpath/mcrcon -H localhost -p intel80386 -w 1
+      fi
+    fi
+  fi
+fi
+

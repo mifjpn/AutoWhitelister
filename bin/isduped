@@ -1,0 +1,25 @@
+#!/bin/bash
+# Is It match whitelist.json
+# $1 = UUID
+# plesase set below directory to your Whitelisted Server (purpur etc.)
+server_dir="/home/[YourUserDir]/minecraft/purpur1.20.6/"
+# echo $server_dir
+# please set to your whitelist.json filename
+whitelist_json_file=$server_dir"whitelist.json"
+# echo $ban_json_file | grep uuid | grep $1
+# echo $ban_json_file
+# echo grep $1 $ban_json_file
+#echo ${#1}
+if [ ${#1} -ne 36 ]; then
+    echo UUID length invalid! ${#1}
+    exit 1
+fi
+grep_result=$( grep uuid $whitelist_json_file | grep $1)
+if [ $? -eq 0 ]; then
+#    eval echo $grep_result
+    echo true
+    exit 0
+fi
+echo false
+exit 1
+
