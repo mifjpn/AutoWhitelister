@@ -1,7 +1,7 @@
 # AutoWhitelister
 ## 使い方
 ### 動作
-　Whitelist制の、Spigot～Purpur系の標準出力（エラー出力を含む）を1行ずつ解釈し、MCID UUIDを取得します。その後、banにMCID,UUIDがない事とWhitelistに未登録のいない場合、Whitelistにそれらつけ足します。そしてRconポートに"witelist reload"を送り、Whitelistの書き換えを有効にします。クライアントが最初のアクセスだった場合、「接続できません・・・（以下設定された文言）」が出て1回目のアクセスはキックされます。
+　Whitelist制の、Spigot～Purpur系の標準出力（エラー出力を含む）を1行ずつ解釈し、MCID UUIDを取得します。その後、banにMCID,UUIDがない事とWhitelistに未登録の場合、Whitelistにそれらをつけ足します。そしてRconポートに"witelist reload"を送り、Whitelistの書き換えを有効にします。クライアントが最初のアクセスだった場合、「接続できません・・・（以下設定された文言）」が出て1回目のアクセスはキックされます。
 ### 準備
 　ファイル群は~/binに置くことをお勧めします。そして、各シェルスクリプト等は実行属性を与えてください。また、スクリプトには、スクリプトがおかれている絶対パスやサーバの置かれている絶体パスや各種ファイル名、RCONポートのパスワード（server.propertiesと同じ）が記載されて得いますので、自分の環境に合わせて設定してください。
 
@@ -44,7 +44,7 @@ use.
 
 >Example
 >
->in spugot.yml
+>in spigot.yml
 >
 >messages:
 >  whitelist: あなたの情報を審査中です。審査を通ればログインリストに登録されます。少し待った後（10秒程度）もう一度ログインしてみてください。ログインできない場合はDiscordなどで管理>者にご連絡ください。（https:///・・・を見てください）`
@@ -62,7 +62,7 @@ The client receives an error message from the server upon first login.Therefore,
 
 >Example
 >
->In spugot.yml
+>In spigot.yml
 >
 >Message:
 > Whitelist: Your information is currently under review. If your application passes the screening, it will be added to the login list. Please wait for a while (about 10 seconds) and then log in again. If you are unable to log in, please contact the administrator via Discord etc. (see https:///...)`
