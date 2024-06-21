@@ -36,7 +36,8 @@ echo -e "\e[31m ========== Catch UUID! SO Check Lists ==========\e[m"
         echo '  }'>> $whitelistfile
         echo ']'>> $whitelistfile
         sleep 3
-        echo "whitelist reload" | $binpath/mcrcon -H localhost -p intel80386 -w 1
+# please set Rcon-pote password
+        echo "whitelist reload" | $binpath/mcrcon -H localhost -p [password] -w 1
       fi
     fi
   fi
