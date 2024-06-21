@@ -53,7 +53,7 @@ use.
 
 >in server.propaties
 >
->rcon.password=somting-pass-word
+>rcon.password=something-pass-word
 >
 >rcon.port=25575
 
@@ -72,7 +72,7 @@ The client receives an error message from the server upon first login.Therefore,
 
 >in server.properties
 >
->rcon.password=Somting Password
+>rcon.password=Something Password
 >
 >rcon.port=25575
 
