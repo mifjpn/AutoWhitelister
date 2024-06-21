@@ -54,6 +54,7 @@ use.
 >in server.propaties
 >
 >rcon.password=somting-pass-word
+>
 >rcon.port=25575
 
 ### About the message when whitelist error occurs
@@ -72,6 +73,7 @@ The client receives an error message from the server upon first login.Therefore,
 >in server.properties
 >
 >rcon.password=Somting Password
+>
 >rcon.port=25575
 
 ## 総括
